@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'AnswerQuestionsPage.dart';
 import 'package:share/share.dart';
@@ -51,51 +52,105 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                buildTextField('First Name', firstName, (value) {
-                  setState(() {
-                    firstName = value;
-                  });
-                }),
-                buildTextField('Last Name', lastName, (value) {
-                  setState(() {
-                    lastName = value;
-                  });
-                }),
-                buildTextField('Prefix', prefix, (value) {
-                  setState(() {
-                    prefix = value;
-                  });
-                }),
-                buildTextField('Specialty', specialty, (value) {
-                  setState(() {
-                    specialty = value;
-                  });
-                }),
-                buildTextField('Medical Education', medicalEducation, (value) {
-                  setState(() {
-                    medicalEducation = value;
-                  });
-                }),
-                buildTextField('Residency', residency, (value) {
-                  setState(() {
-                    residency = value;
-                  });
-                }),
-                buildTextField('Internship', internship, (value) {
-                  setState(() {
-                    internship = value;
-                  });
-                }),
-                buildTextField('Fellowship', fellowship, (value) {
-                  setState(() {
-                    fellowship = value;
-                  });
-                }),
-                buildTextField('Biography', biography, (value) {
-                  setState(() {
-                    biography = value;
-                  });
-                }),
+                buildTextField(
+                  'First Name',
+                  firstName,
+                  (value) {
+                    setState(() {
+                      firstName = value;
+                    });
+                  },
+                  TextInputType.text,
+                  maxLines: 1,
+                ),
+                buildTextField(
+                  'Last Name',
+                  lastName,
+                  (value) {
+                    setState(() {
+                      lastName = value;
+                    });
+                  },
+                  TextInputType.text,
+                  maxLines: 1,
+                ),
+                buildTextField(
+                  'Prefix',
+                  prefix,
+                  (value) {
+                    setState(() {
+                      prefix = value;
+                    });
+                  },
+                  TextInputType.text,
+                  maxLines: 1,
+                ),
+                buildTextField(
+                  'Specialty',
+                  specialty,
+                  (value) {
+                    setState(() {
+                      specialty = value;
+                    });
+                  },
+                  TextInputType.text,
+                  maxLines: 1,
+                ),
+                buildTextField(
+                  'Medical Education',
+                  medicalEducation,
+                  (value) {
+                    setState(() {
+                      medicalEducation = value;
+                    });
+                  },
+                  TextInputType.text,
+                  maxLines: 1,
+                ),
+                buildTextField(
+                  'Residency',
+                  residency,
+                  (value) {
+                    setState(() {
+                      residency = value;
+                    });
+                  },
+                  TextInputType.text,
+                  maxLines: 3,
+                ),
+                buildTextField(
+                  'Internship',
+                  internship,
+                  (value) {
+                    setState(() {
+                      internship = value;
+                    });
+                  },
+                  TextInputType.text,
+                  maxLines: 15,
+                ),
+                buildTextField(
+                  'Fellowship',
+                  fellowship,
+                  (value) {
+                    setState(() {
+                      fellowship = value;
+                    });
+                  },
+                  TextInputType.text,
+                  maxLines: 15,
+                ),
+                buildTextField(
+                  'Biography',
+                  biography,
+                  (value) {
+                    setState(() {
+                      biography = value;
+                    });
+                  },
+                  TextInputType.text,
+                  maxLines: 10,
+                ),
                 SizedBox(height: 20),
               ],
             ),
@@ -132,9 +187,16 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Color.fromARGB(255, 33, 124, 243),
       appBar: AppBar(
-        // Customize your app bar here
-        title: Text('Hospital Service'),
+        centerTitle: true,
+        title: Text(
+          'Hospital Service',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+        ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.blue),
         actions: [
@@ -155,141 +217,162 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: () {
-                  _editProfilePicture();
-                },
-                child: CircleAvatar(
-                  radius: 80,
-                  backgroundImage: profileImagePath != null
-                      ? AssetImage(profileImagePath!)
-                      : null,
-                  child: profileImagePath == null
-                      ? Icon(Icons.person, size: 80)
-                      : null,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Hello Shahrukh",
+                      style: GoogleFonts.aBeeZee(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _editProfilePicture();
+                      },
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundImage: profileImagePath != null
+                            ? AssetImage(profileImagePath!)
+                            : null,
+                        child: profileImagePath == null
+                            ? Icon(Icons.person, size: 30)
+                            : null,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 16.0),
-              TextField(
-                controller: descriptionController,
-                decoration: InputDecoration(
-                  labelText: 'Description',
-                ),
-              ),
-
-              // TextField(
-              //   controller: TextEditingController(text: prefix),
-              //   onChanged: (value) {
-              //     prefix = value;
-              //   },
-              //   decoration: InputDecoration(
-              //     labelText: 'Prefix',
-              //   ),
-              // ),
-              TextField(
-                controller: TextEditingController(text: firstName),
-                onChanged: (value) {
-                  firstName = value;
+              buildTextField(
+                'First Name',
+                firstName,
+                (value) {
+                  setState(() {
+                    firstName = value;
+                  });
                 },
-                decoration: InputDecoration(
-                  labelText: 'First Name',
-                ),
+                TextInputType
+                    .text, // Update the data type to TextInputType.text
+                maxLines:
+                    1, // Set maxLines to 1 since it's a single-line text field
               ),
-              TextField(
-                controller: TextEditingController(text: lastName),
-                onChanged: (value) {
-                  lastName = value;
+              buildTextField(
+                'Last Name',
+                lastName,
+                (value) {
+                  setState(() {
+                    lastName = value;
+                  });
                 },
-                decoration: InputDecoration(
-                  labelText: 'Last Name',
-                ),
+                TextInputType.text,
+                maxLines: 1,
               ),
-              TextField(
-                controller: ageController,
-                decoration: InputDecoration(
-                  labelText: 'Age',
-                ),
-              ),
-              // TextField(
-              //   controller: specializationController,
-              //   decoration: InputDecoration(
-              //     labelText: 'Specialization',
-              //   ),
-              // ),
-              TextField(
-                controller: TextEditingController(text: specialty),
-                onChanged: (value) {
-                  specialty = value;
+              buildTextField(
+                'Prefix',
+                prefix,
+                (value) {
+                  setState(() {
+                    prefix = value;
+                  });
                 },
-                decoration: InputDecoration(
-                  labelText: 'Specialization',
-                ),
+                TextInputType.text,
+                maxLines: 1,
               ),
-              TextField(
-                controller: TextEditingController(text: rank.toString()),
-                onChanged: (value) {
-                  rank = int.tryParse(value) ?? 1;
+              buildTextField(
+                'Specialty',
+                specialty,
+                (value) {
+                  setState(() {
+                    specialty = value;
+                  });
                 },
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: 'Rank',
-                ),
+                TextInputType.text,
+                maxLines: 1,
               ),
-              TextField(
-                controller: TextEditingController(text: medicalEducation),
-                onChanged: (value) {
-                  medicalEducation = value;
+              buildTextField(
+                'Rank',
+                rank.toString(),
+                (value) {
+                  setState(() {
+                    rank = int.tryParse(value) ?? 1;
+                  });
                 },
-                decoration: InputDecoration(
-                  labelText: 'Medical Education',
-                ),
+                TextInputType.number,
+                maxLines: 1,
               ),
-              TextField(
-                controller: TextEditingController(text: residency),
-                onChanged: (value) {
-                  residency = value;
+              buildTextField(
+                'Medical Education',
+                medicalEducation,
+                (value) {
+                  setState(() {
+                    medicalEducation = value;
+                  });
                 },
-                decoration: InputDecoration(
-                  labelText: 'Residency',
-                ),
+                TextInputType.text,
+                maxLines: 3,
               ),
-              TextField(
-                controller: TextEditingController(text: internship),
-                onChanged: (value) {
-                  internship = value;
+              buildTextField(
+                'Residency',
+                residency,
+                (value) {
+                  setState(() {
+                    residency = value;
+                  });
                 },
-                decoration: InputDecoration(
-                  labelText: 'Internship',
-                ),
+                TextInputType.text,
+                maxLines: 3,
               ),
-              TextField(
-                controller: TextEditingController(text: fellowship),
-                onChanged: (value) {
-                  fellowship = value;
+              buildTextField(
+                'Internship',
+                internship,
+                (value) {
+                  setState(() {
+                    internship = value;
+                  });
                 },
-                decoration: InputDecoration(
-                  labelText: 'Fellowship',
-                ),
+                TextInputType.text,
+                maxLines: 3,
               ),
-              TextField(
-                controller: TextEditingController(text: biography),
-                onChanged: (value) {
-                  biography = value;
+              buildTextField(
+                'Fellowship',
+                fellowship,
+                (value) {
+                  setState(() {
+                    fellowship = value;
+                  });
                 },
-                decoration: InputDecoration(
-                  labelText: 'Biography',
-                ),
+                TextInputType.text,
+                maxLines: 3,
+              ),
+              buildTextField(
+                'Biography',
+                biography,
+                (value) {
+                  setState(() {
+                    biography = value;
+                  });
+                },
+                TextInputType.text,
+                maxLines: 3,
               ),
               SizedBox(height: 15),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   OutlinedButton(
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
+                      ),
+                      side: BorderSide(
+                        color: Colors.black,
+                        width: 0,
                       ),
                     ),
                     child: Text(
@@ -305,14 +388,14 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                     onPressed: _updateAccount,
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
                     child: Text(
-                      'Update',
+                      'UPDATE',
                       style: TextStyle(
                         fontSize: 14,
                         letterSpacing: 2.2,
@@ -621,44 +704,54 @@ class _drawerWidgetState extends State<drawerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var profileImagePath;
     return Drawer(
       backgroundColor: Color.fromRGBO(246, 248, 248, 1),
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/wave_design_image.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Stack(
               children: [
-                TextButton(
-                  onPressed: () async {
-                    final updatedProfilePic = await Navigator.push<File?>(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ProfilePage(updatedProfilePic: _profilePic),
-                      ),
-                    );
-
-                    if (updatedProfilePic != null) {
-                      setState(() {
-                        _profilePic = updatedProfilePic;
-                      });
-                    }
-                  },
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Color.fromARGB(255, 35, 159, 231),
-                    backgroundImage:
-                        _profilePic != null ? FileImage(_profilePic!) : null,
-                  ),
+                Image.asset(
+                  "assets/wave_design_image.png",
+                  height: 300,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover,
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'Username',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.blue,
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          _editProfilePicture();
+                        },
+                        child: CircleAvatar(
+                          radius: 30,
+                          backgroundImage: profileImagePath != null
+                              ? AssetImage(profileImagePath!)
+                              : null,
+                          child: profileImagePath == null
+                              ? Icon(Icons.person, size: 30)
+                              : null,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Username',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -673,7 +766,7 @@ class _drawerWidgetState extends State<drawerWidget> {
               setState(() {
                 DrawerSelector = "Appointments";
               });
-              widget.updateSelectedUser(DrawerSelector);
+              widget.updateSelectedUser("Appointments");
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -693,7 +786,7 @@ class _drawerWidgetState extends State<drawerWidget> {
               setState(() {
                 DrawerSelector = "doctor";
               });
-              widget.updateSelectedUser(DrawerSelector);
+              widget.updateSelectedUser("doctor");
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => FindDoctor()),
@@ -709,7 +802,7 @@ class _drawerWidgetState extends State<drawerWidget> {
               setState(() {
                 DrawerSelector = "hospital";
               });
-              widget.updateSelectedUser(DrawerSelector);
+              widget.updateSelectedUser("hospital");
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => HospitalListScreen()),
@@ -725,7 +818,7 @@ class _drawerWidgetState extends State<drawerWidget> {
               setState(() {
                 DrawerSelector = "payment";
               });
-              widget.updateSelectedUser(DrawerSelector);
+              widget.updateSelectedUser("payment");
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -738,20 +831,16 @@ class _drawerWidgetState extends State<drawerWidget> {
           ListTile(
             selected: DrawerSelector == "AnswerQuestions",
             leading: Icon(Icons.question_answer),
-            title: Text(
-                "Answer Questions"), // Change the title to "Answer Questions"
+            title: Text("Answer Questions"),
             contentPadding: EdgeInsets.symmetric(horizontal: 25),
             onTap: () {
               setState(() {
-                DrawerSelector =
-                    "AnswerQuestions"; // Change the selector to "AnswerQuestions"
+                DrawerSelector = "AnswerQuestions";
               });
-              widget.updateSelectedUser(DrawerSelector);
+              widget.updateSelectedUser("AnswerQuestions");
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        AnswerQuestionsPage()), // Navigate to AnswerQuestionsPage
+                MaterialPageRoute(builder: (context) => AnswerQuestionsPage()),
               );
             },
           ),
@@ -764,7 +853,7 @@ class _drawerWidgetState extends State<drawerWidget> {
               setState(() {
                 DrawerSelector = "feedback";
               });
-              widget.updateSelectedUser(DrawerSelector);
+              widget.updateSelectedUser("feedback");
               _showFeedbackDialog(context);
             },
           ),
@@ -777,7 +866,7 @@ class _drawerWidgetState extends State<drawerWidget> {
               setState(() {
                 DrawerSelector = "Policy";
               });
-              widget.updateSelectedUser(DrawerSelector);
+              widget.updateSelectedUser("Policy");
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -796,8 +885,6 @@ class _drawerWidgetState extends State<drawerWidget> {
               logout();
             },
           ),
-          Expanded(child: Container()),
-          Divider(thickness: 1),
           ListTile(
             leading: Icon(Icons.share),
             title: Text("Share to Friend"),
@@ -820,11 +907,35 @@ class _drawerWidgetState extends State<drawerWidget> {
   }
 }
 
-Widget buildTextField(
-  String labelText,
-  String placeholder,
-  Function(String) onChanged,
-) {
+void _editProfilePicture() async {
+  final picker = ImagePicker();
+  final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+  if (pickedFile != null) {
+    setState(() {
+      _profilePic = File(pickedFile.path);
+    });
+  }
+}
+
+File? _profilePic;
+
+Future<void> _editProfilePic() async {
+  final picker = ImagePicker();
+  final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+  if (pickedFile != null) {
+    setState(() {
+      _profilePic = File(pickedFile.path);
+    });
+  }
+}
+
+void setState(Null Function() param0) {}
+
+Widget buildTextField(String labelText, String placeholder,
+    Function(String) onChanged, TextInputType number,
+    {required int maxLines}) {
   return Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
